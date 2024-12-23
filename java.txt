@@ -1,0 +1,2 @@
+Trying to upload this java text file on the github through the 
+git commands on ubuntu terminal. 
