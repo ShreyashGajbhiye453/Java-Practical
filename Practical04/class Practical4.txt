@@ -1,0 +1,195 @@
+class Practical4{
+
+//----------------------------------------------------------------------
+//getByte() METHOD :-
+	int getByte(int num){
+	int result; //To store the final byte value and return
+	if(num >= 0){	//To check number is positive or not     
+       int temp = num/128; // To check the value is greater than 128
+       if(temp%2 == 0){	// To check temp is even or not
+           result = num % 128;
+           return result;
+	}
+	else{
+          result = num % 128 -128;
+          return result;
+	}
+    	}else if(num == -128){
+	return -128;
+	}
+	else{
+    	 
+	int temp = num/128;
+	if(temp%2 == 0){
+           result = num % 128;
+           return result;
+           
+      }
+       else{
+          result = num % 128 +128;
+          return result;
+          
+       }
+}}
+
+
+//-------------------------------------------------------------------
+//getShort() METHOD :-
+	int getShort(int num){
+	int result; //To store the final byte value and return
+	if(num >= 0){	 //To check number is positive or not 
+       int temp = num/32768;	// To check the value is greater than 128
+       if(temp%2 == 0){	  // To check temp is even or not
+           result = num % 32768;
+           return result;
+	}
+	else{
+          result = num % 32768 -32768;
+          return result;
+	}
+    	}else if(num == -32768){
+	return -32768;
+	}
+	else{
+    	 
+	int temp = num/32768;
+	if(temp%2 == 0){
+           result = num % 32768;
+           return result;
+           
+      }
+       else{
+          result = num % 32768 + 32768;
+          return result;
+          
+       }
+}}
+
+//-------------------------------------------------------------------
+
+//getNumber() METHOD :-
+	int getNumber(int number, String type) {
+    	String _byte_ = "byte";
+	String _short_ = "short";
+    	type = type.toLowerCase(); // To make the type string into all lower case
+    
+    	int result = 0; // To store the final value that is byte or short
+
+    	// Handle byte type
+    	if (_byte_.startsWith(type) == true) {	//Check the _byte_ string is starts with the input type string
+        if (number >= 0) {
+            int temp = number / 128;
+            if (temp % 2 == 0) {
+                result = number % 128;
+            } else {
+                result = number % 128 - 128;
+            }
+        } else if (number == -128) {  // Special case for -128
+            result = -128;
+        } else {
+            // For negative numbers other than -128
+            int temp = number / 128;
+            if (temp % 2 == 0) {
+                result = number % 128;
+            } else {
+                result = number % 128 + 128;
+            }
+        }
+    }
+    
+    	// Handle short type
+    	else if (_short_ .startsWith(type) == true) {	//Check the _byte_ string is starts with the input type string
+        if (number >= 0) {
+            int temp = number / 32768;
+            if (temp % 2 == 0) {
+                result = number % 32768;
+            } else {
+                result = number % 32768 - 32768;
+            }
+        } else if (number == -32768) {  // Special case for -32768
+            result = -32768;
+        } else {
+            // For negative numbers other than -32768
+            int temp = number / 32768;
+            if (temp % 2 == 0) {
+                result = number % 32768;
+            } else {
+                result = number % 32768 + 32768;
+            }
+        }
+    }
+
+    	return result;
+}
+
+//-----------------------------------------------------------------------
+//toXXstring() METHOD :-
+	String toXXstring(String number, String type){
+	type = type.toLowerCase(); // To make the input type string into lower case
+	String _hexadecimal_ = "hexadecimalstring";
+	String _octal_ = "octalstring";
+	String _binary_ = "binarystring";
+	String _decimal_ = "decimalnumber";
+	int value = 0;	// To get the value for binary, octal, hexadecimal
+	char c;	// To store the character values in the hexadecimal
+	String final_result = ""; //To return the final converted value 
+	int num = Integer.parseInt(number); //To convert the decimal value in string into the integer value
+	int[] convertedValue = new int[100];	//To store the converted value
+	int i =0;
+	
+
+	// If else condition to take the value according to the input type
+	if(_hexadecimal_.startsWith(type) == true){
+		value = 16;
+		
+	}else if(_octal_.startsWith(type) == true){
+	value = 8;
+	}else if(_binary_.startsWith(type) == true){
+	value = 2;
+	}else{
+		return "Enter a valid choice!"; // If the input type is invalid
+};
+	
+	//Converting the decimal value into appropriate form
+	while(num > 0){
+		convertedValue[i] = num % value;
+		num = num / value;
+		i++;
+	};
+	StringBuilder result = new StringBuilder(); // To make the string mutable
+	
+	// Condition for the hexa values in character form
+	if(value == 16){
+	for(int j = i -1; j >= 0; j--){
+
+	if(convertedValue[j]> 9){
+	c = (char)(55+convertedValue[j]); // Gives the character value for above 9 and below 16
+	result.append(c);} // Append the char value into the char sequence
+	else{
+	result.append(convertedValue[j]); // else append the value itself
+	};}}
+	else{
+ 	
+	//For binary and octal just reverse the value of array into the char sequence
+	for(int j = i - 1; j >= 0; j--){
+	result.append(convertedValue[j]);
+	};};
+	final_result = result.toString(); // Convert the char sequence into the string
+	
+	//returns the value according to their type mention
+	 if(value == 16){
+	return "0X"+final_result;
+	}else if(value == 8){
+	return "0"+final_result;
+	}else{
+	return "0B"+final_result;
+	}
+
+	}	
+	return 0;
+	}
+
+
+
+
+}
