@@ -2,7 +2,7 @@ class Practical4{
 
 //----------------------------------------------------------------------
 //getByte() METHOD :-
-	int getByte(int num){
+	public static int getByte(int num){
 	int result; //To store the final byte value and return
 	if(num >= 0){	//To check number is positive or not     
        int temp = num/128; // To check the value is greater than 128
@@ -35,7 +35,7 @@ class Practical4{
 
 //-------------------------------------------------------------------
 //getShort() METHOD :-
-	int getShort(int num){
+	public static int getShort(int num){
 	int result; //To store the final byte value and return
 	if(num >= 0){	 //To check number is positive or not 
        int temp = num/32768;	// To check the value is greater than 128
@@ -68,7 +68,7 @@ class Practical4{
 //-------------------------------------------------------------------
 
 //getNumber() METHOD :-
-	int getNumber(int number, String type) {
+	public static int getNumber(int number, String type) {
     	String _byte_ = "byte";
 	String _short_ = "short";
     	type = type.toLowerCase(); // To make the type string into all lower case
@@ -124,7 +124,7 @@ class Practical4{
 
 //-----------------------------------------------------------------------
 //toXXstring() METHOD :-
-	String toXXstring(String number, String type){
+	public static String toXXstring(String number, String type){
 	type = type.toLowerCase(); // To make the input type string into lower case
 	String _hexadecimal_ = "hexadecimalstring";
 	String _octal_ = "octalstring";
@@ -185,11 +185,27 @@ class Practical4{
 	return "0B"+final_result;
 	}
 
-	}	
-	return 0;
 	}
 
+	public static void main(String[] args){
+		int byte_value, short_value, number_value;
+		String string_value;
+		byte_value = getByte(128);
+		System.out.println("The byte value is: "+ byte_value);
+		short_value = getShort(32768);
+		System.out.println("The short value is:"+short_value);
+		number_value = getNumber(128,"byte");
+		System.out.println("The converted value is:"+number_value);
+		number_value = getNumber(-32769,"SHORT");
+		System.out.println("The converted value is:"+number_value);
+		string_value = toXXstring("12","binary");
+		System.out.println("The converted value is:"+string_value);
+		string_value = toXXstring("12","OCTAL");
+		System.out.println("The converted value is:"+string_value);
+		string_value = toXXstring("12","hex");
+		System.out.println("The converted value is:"+string_value);
 
+}
 
 
 }
